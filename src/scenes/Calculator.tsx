@@ -2,13 +2,24 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { set } from 'react-native-reanimated';
 const NumBtn = (props: any) => {
-    return (
-        <TouchableHighlight style={style.numbutton} onPress={() => props.Click(props.text)}>
-            <Text style={style.textstyle}>
-                {props.text}
-            </Text>
-        </TouchableHighlight>
-    )
+    if (props.text === "1" || props.text === "2" || props.text === "3" || props.text === "4" || props.text === "5" ||
+        props.text === "6" || props.text === "7" || props.text === "8" || props.text === "9" || props.text === "0") {
+        return (
+            <TouchableHighlight style={style.numbutton} onPress={() => props.Click(props.text)}>
+                <Text style={style.textstyle}>
+                    {props.text}
+                </Text>
+            </TouchableHighlight>
+        )
+    } else {
+        return (
+            <TouchableHighlight style={style.numbutton} onPress={() => props.Click(props.text)}>
+                <Text style={style.textstyle1}>
+                    {props.text}
+                </Text>
+            </TouchableHighlight>
+        )
+    }
 }
 
 const Top = () => {
@@ -20,13 +31,6 @@ const TextShow = (props: any) => {
             <Text style={{ textAlign: 'right', fontSize: 30, padding: 10 }} >
                 {props.text}
             </Text>
-        </View>
-    )
-}
-const Answer = () => {
-    return (
-        <View style={style.answer}>
-
         </View>
     )
 }
@@ -91,11 +95,15 @@ const Calculator = (props: any) => {
                     // setshownum(shownum.substring(0, shownum.length - 1));
                     num = num.substring(0, num.length - 2);
                     shownum = shownum.substring(0, shownum.length - 1);
+                    num += "**";
+                    shownum += "^"
                 } else {
                     // setnum(num.substring(0, num.length - 1));
                     // setshownum(shownum.substring(0, shownum.length - 1));
                     num = num.substring(0, num.length - 1);
-                    shownum = num.substring(0, shownum.length - 1);
+                    shownum = shownum.substring(0, shownum.length - 1);
+                    num += text;
+                    shownum += text;
                 }
 
                 //setnum(num + text);
@@ -195,7 +203,7 @@ const style = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 12,
         justifyContent: 'center',
-        borderRadius: 5,
+        borderRadius: 30,
     },
     top: {
         backgroundColor: 'darkblue',
@@ -208,10 +216,6 @@ const style = StyleSheet.create({
         margin: 10,
 
     },
-    answer: {
-        flex: 3,
-        backgroundColor: 'yellow',
-    },
     btns: {
         flex: 12,
         flexDirection: 'row'
@@ -219,6 +223,12 @@ const style = StyleSheet.create({
     textstyle: {
         textAlign: 'center',
         fontSize: 30,
+        color:'white'
+    },
+    textstyle1: {
+        textAlign: 'center',
+        fontSize: 30,
+        color:'yellow'
     },
 })
 

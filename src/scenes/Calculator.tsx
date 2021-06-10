@@ -81,6 +81,8 @@ const Calculator = (props: any) => {
     // const [shownum, setshownum] = useState("0");   // <-- ene
     const [show, setshow] = useState(shownum);
     function Click(text) {
+        
+
         if (shownum == "SYNTAX ERROR" || shownum == "Infinity" || shownum == "NaN") {
             shownum = "0";
             num = "0";
@@ -223,12 +225,12 @@ const style = StyleSheet.create({
     textstyle: {
         textAlign: 'center',
         fontSize: 30,
-        color:'white'
+        color: 'white'
     },
     textstyle1: {
         textAlign: 'center',
         fontSize: 30,
-        color:'yellow'
+        color: 'yellow'
     },
 })
 

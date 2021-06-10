@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'
-import { onChange } from 'react-native-reanimated';
+import Animated, { Easing, onChange } from 'react-native-reanimated';
 
 const Bar = (props: any) => {
 
@@ -44,6 +44,48 @@ const Bar = (props: any) => {
     )
 }
 
+const Numbers = () => {
+    return (
+        <TouchableHighlight style={style.number}>
+            <View>
+
+            </View>
+        </TouchableHighlight>
+    )
+}
+
+const NumPad = (props:any) => {
+
+   
+
+    return (
+        <View style={style.numpad}>
+            <View style={{ flexDirection: 'column' }}>
+                <Numbers />
+                <Numbers />
+                <Numbers />
+            </View>
+            <View style={{ flexDirection: 'column' }}>
+                <Numbers />
+                <Numbers />
+                <Numbers />
+                <Numbers />
+            </View>
+            <View style={{ flexDirection: 'column' }}>
+                <Numbers />
+                <Numbers />
+                <Numbers />
+            </View>
+            <View style={{ flexDirection: 'column' }}>
+                <Numbers />
+                <Numbers />
+                <Numbers />
+                <Numbers />
+            </View>
+        </View>
+    )
+}
+
 const Temperature = (props: any) => {
 
     const [C, setC] = useState(0);
@@ -80,6 +122,10 @@ const Temperature = (props: any) => {
                 <Bar text={C} Change={Change} name="°C" />
                 <Bar text={K} Change={Change} name="°K" />
                 <Bar text={F} Change={Change} name="°F" />
+
+            </View>
+            <View style={{ flex: 9 }}>
+                {/* <NumPad /> */}
             </View>
         </View>
     )
@@ -91,11 +137,11 @@ const style = StyleSheet.create({
         flex: 2,
     },
     body: {
-        flex: 18,
+        flex: 9,
         margin: 10,
     },
     input: {
-        borderRadius:10,
+        borderRadius: 10,
         backgroundColor: 'darkgrey',
         height: 60,
         width: 200,
@@ -115,7 +161,7 @@ const style = StyleSheet.create({
         backgroundColor: 'grey',
         marginRight: 10,
         marginTop: 10,
-        borderRadius:30,
+        borderRadius: 30,
     },
     text: {
         height: 60,
@@ -132,6 +178,16 @@ const style = StyleSheet.create({
         textAlign: 'center',
         fontSize: 35,
     },
+    numpad: {
+        flexDirection: 'row'
+    },
+    number: {
+        backgroundColor: "grey",
+        height: 50,
+        width: 75,
+        marginLeft: 12,
+        marginBottom: 13
+    }
 })
 
 export default Temperature;
